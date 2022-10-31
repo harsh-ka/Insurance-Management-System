@@ -20,19 +20,41 @@ public class Employee {
 
     private String employeeAddress;
 
-    @Valid
-    private Admin admin;
+    private int admin_id;
+
+    String username;
+
+    public Employee(String employeeId, Date joinDate, Date endDate, String firstName, String middleName, String lastName, String email, String employeeAddress, int admin_id, String username) {
+        this.employeeId = employeeId;
+        this.joinDate = joinDate;
+        this.endDate = endDate;
+        FirstName = firstName;
+        MiddleName = middleName;
+        LastName = lastName;
+        this.email = email;
+        this.employeeAddress = employeeAddress;
+        this.admin_id = admin_id;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public int getAdmin_id() {
+        return admin_id;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
     }
 
     public String getEmployeeId() {

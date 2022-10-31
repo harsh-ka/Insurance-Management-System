@@ -18,15 +18,24 @@ public class Agent
     private int houseNo;
     private String landmark;
     private String city;
+    @NotBlank
+    private String employeeId;
 
-    @Valid
-    private Employee emp;
-
-    @Valid
-    private Admin admin;
+    @NotBlank
+    private int admin_id;
 
     @NotBlank
     private int Commision;
+
+    String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public int getAgentId() {
         return agentId;
@@ -52,12 +61,12 @@ public class Agent
         this.firstName = firstName;
     }
 
-    public String getMidddleName() {
-        return midddleName;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setMidddleName(String midddleName) {
-        this.midddleName = midddleName;
+    public void setMiddleName(String midddleName) {
+        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -92,20 +101,20 @@ public class Agent
         this.city = city;
     }
 
-    public Employee getEmp() {
-        return emp;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmp(Employee emp) {
-        this.emp = emp;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public int getAdmin_id() {
+        return admin_id;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
     }
 
     public int getCommision() {

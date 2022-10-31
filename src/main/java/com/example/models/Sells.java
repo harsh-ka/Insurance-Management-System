@@ -6,18 +6,63 @@ import java.util.Date;
 
 public class Sells
 {
-    @Valid
-    private Agent agent;
+    private int agentId;
 
-    @Valid
-    private Client client;
+    private int clientNo;
 
-    @Valid
-    private Policies policy;
+    private int PolicyTerm;
+
+    private String InsuranceId;
 
     @NotBlank
     private Date buyDate;
     @NotBlank
     private int amount;
+    public int getAgentId() {
+        return agentId;
+    }
 
+    public void setAgentId(int agentId) {
+        this.agentId = agentId;
+    }
+
+    public int getClientNo() {
+        return clientNo;
+    }
+
+    public void setClientNo(int clientNo) {
+        this.clientNo = clientNo;
+    }
+
+    public int getPolicyTerm() {
+        return PolicyTerm;
+    }
+
+    public void setPolicyTerm(int policyTerm) {
+        PolicyTerm = policyTerm;
+    }
+
+    public String getInsuranceId() {
+        return InsuranceId;
+    }
+
+    public void setInsuranceId(String insuranceId) {
+        InsuranceId = insuranceId;
+    }
+
+    public Date getBuyDate() {
+        return buyDate;
+    }
+
+    public void setBuyDate(Date buyDate) {
+        this.buyDate = buyDate;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }
