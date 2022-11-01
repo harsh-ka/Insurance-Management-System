@@ -11,9 +11,9 @@ public class Employee {
     private Date endDate;
 
     @NotBlank
-    private String FirstName;
-    private  String MiddleName;
-    private  String LastName;
+    private String firstName;
+    private  String middleName;
+    private  String lastName;
 
     @NotBlank
     private String email;
@@ -24,13 +24,16 @@ public class Employee {
 
     String username;
 
+    public Employee() {
+    }
+
     public Employee(String employeeId, Date joinDate, Date endDate, String firstName, String middleName, String lastName, String email, String employeeAddress, int admin_id, String username) {
         this.employeeId = employeeId;
         this.joinDate = joinDate;
         this.endDate = endDate;
-        FirstName = firstName;
-        MiddleName = middleName;
-        LastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
         this.email = email;
         this.employeeAddress = employeeAddress;
         this.admin_id = admin_id;
@@ -78,27 +81,27 @@ public class Employee {
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getMiddleName() {
-        return MiddleName;
+        return middleName;
     }
 
     public void setMiddleName(String middleName) {
-        MiddleName = middleName;
+        this.middleName = middleName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -117,17 +120,7 @@ public class Employee {
         this.employeeAddress = employeeAddress;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeId='" + employeeId + '\'' +
-                ", joinDate=" + joinDate +
-                ", endDate=" + endDate +
-                ", FirstName='" + FirstName + '\'' +
-                ", MiddleName='" + MiddleName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", email='" + email + '\'' +
-                ", employeeAddress='" + employeeAddress + '\'' +
-                '}';
-    }
+
+
+
 }

@@ -39,17 +39,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/", "/welcome", "/user/**", "/css/**", "/img/**", "/js/**").permitAll();
 
-		http.authorizeRequests().antMatchers("/employee/**").access("hasAnyAuthority('Employee')");
+		http.authorizeRequests().antMatchers("/client/**").access("hasAnyAuthority('Client')");
 
 		http.authorizeRequests().antMatchers("/agent/**").access("hasAnyAuthority('Agent')");
 
-		http.authorizeRequests().antMatchers("/client/**").access("hasAnyAuthority('Client')");
+		http.authorizeRequests().antMatchers("/employee/**").access("hasAnyAuthority('Employee')");
 
 		http.authorizeRequests().antMatchers("/admin/**").access("hasAnyAuthority('Admin')");
 
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/user/login")
-				.failureUrl("/user/login?error=true").defaultSuccessUrl("/welcome", true).and().logout()
-				.logoutUrl("/user/logout").logoutSuccessUrl("/user/login?logout");
+//		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/user/login")
+//				.failureUrl("/user/login?error=true").defaultSuccessUrl("/welcome", true).and().logout()
+//				.logoutUrl("/user/logout").logoutSuccessUrl("/user/login?logout");
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/user/login").usernameParameter("username").passwordParameter("password").loginProcessingUrl("/welcome")
+				.failureUrl("/login?error=true").defaultSuccessUrl("/welcome",true)
+				.and().logout().logoutUrl("user/logout").logoutSuccessUrl("/user/login?logout");
 	}
 
 }

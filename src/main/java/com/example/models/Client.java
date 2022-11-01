@@ -9,6 +9,25 @@ public class Client
     @NotBlank
     private int clientNo;
 
+    @NotBlank
+    private String FirstName;
+    private String MiddleName;
+    private String LastName;
+
+    @NotBlank
+    private String clientEmail;
+    private String clientContact;
+
+    @NotBlank
+    private int HouseNo;
+    private String landMark;
+    private String city;
+    @NotBlank
+    private String employeeId;
+
+    @NotBlank
+    private String username;
+
     public String getUsername() {
         return username;
     }

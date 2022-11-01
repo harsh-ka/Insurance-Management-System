@@ -1,12 +1,13 @@
 package com.example.dao;
 
+import com.example.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
-
+import java.util.List;
 import com.example.models.User;
 
 @Repository
@@ -67,7 +68,18 @@ public class UserRepository {
         String sql = "UPDATE User SET passwordHash = ? WHERE username = ?";
         template.update(sql, passwordHash, username);
     }
+    public List<User> getAll(){
+        String sql="SELECT * FROM User";
+        try {
+            return template.query(sql,(rs, rowNum) -> {
+                User e=new BeanPropertyRowMapper<User>(User.class).mapRow(rs,rowNum);
+                return e;
+            });
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
 
+    }
     public void deleteUser(String username) {
         String sql = "DELETE FROM User WHERE username = ?";
         template.update(sql, username);

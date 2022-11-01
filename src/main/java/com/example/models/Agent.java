@@ -11,7 +11,7 @@ public class Agent
 
     @NotBlank
     private String firstName;
-    private String midddleName;
+    private String middleName;
     private String lastName;
 
     @NotBlank

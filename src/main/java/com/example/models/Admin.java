@@ -8,7 +8,17 @@ public class Admin {
     private int admin_id;
     private String admin_name;
     private String admin_email;
-    private BigInteger contactNo;
+    private String contactNo;
+
+    String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public int getAdmin_id() {
         return admin_id;
@@ -34,11 +44,11 @@ public class Admin {
         this.admin_email = admin_email;
     }
 
-    public BigInteger getContactNo() {
+    public String getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(BigInteger contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 

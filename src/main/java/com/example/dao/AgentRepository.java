@@ -20,7 +20,7 @@ public class AgentRepository {
     private JdbcTemplate template;
 
     public void createAgent(Agent agent){
-        String sql="INSERT INTO AGENT(agentID,licenceNo,firstName,middleName,lastName,houseNo,landmark,city,employeeId,admin_Id,Comission) Values(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO AGENT(agentID,licenceNo,firstName,middleName,lastName,houseNo,landmark,city,employeeId,admin_Id,Comission,username) Values(?,?,?,?,?,?,?,?,?,?,?,?)";
         template.update(sql, agent.getAgentId(),
                 agent.getLicenceNo(),
                 agent.getFirstName(),

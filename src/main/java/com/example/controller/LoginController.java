@@ -1,21 +1,26 @@
 package com.example.controller;
 
+import java.util.List;
 import java.util.UUID;
 
+import com.example.dao.ClientRepository;
+import com.example.dao.EmployeeRepository;
+import com.example.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 
 import com.example.models.User;
 import com.example.dao.UserRepository;
 import com.example.services.SecurityService;
 import com.example.services.EmailService;
+import com.example.dao.EmployeeRepository;
+import javax.validation.Valid;
 
 @Controller
 @Transactional
@@ -29,13 +34,18 @@ public class LoginController {
 
     @Autowired
     EmailService emailService;
+    @Autowired
+    EmployeeRepository employeeRepository;
+    
+    @Autowired
+    ClientRepository clientRepository;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
     @GetMapping("/user/login")
     public String login(Model model, String error, String logout, String emailSent, String resetPassword) {
-        System.out.println("THis is running");
         if (error != null)
             model.addAttribute("error", "Invalid username or password");
 
@@ -50,33 +60,58 @@ public class LoginController {
 
         return "template/login";
     }
-    @PostMapping("/user/login")
-    public String login_user(String username,String password){
-        System.out.println("THis is running");
-        return "template/login";
-    }
     @GetMapping("/welcome")
     public String user() {
-
         User user = securityService.findLoggedInUser();
-
+     //   System.out.println(employeeRepository.getAll());
+      //  System.out.println(user);
         if (user == null)
             return "redirect:/user/login?error";
 
-        if (user.getRole().equals("Admin"))
+        if (user.getRole().equals("Admin")) {
             return "redirect:/admin/dashboard";
+        }
+        else if (user.getRole().equals("Client"))
+            return "redirect:/client/dashboard";
 
-        else if (user.getRole().equals("Student"))
-            return "redirect:/student/dashboard";
+        else if (user.getRole().equals("Agent"))
+            return "redirect:/agent/dashboard";
 
-        else if (user.getRole().equals("Professor"))
-            return "redirect:/professor/dashboard";
-
-        else if (user.getRole().equals("Staff"))
-            return "redirect:/staff/dashboard";
+        else if (user.getRole().equals("Employee"))
+            return "redirect:/employee/dashboard";
 
         else
             return "redirect:/user/login?error";
+
+    }
+    @GetMapping("/user/signup")
+    public String addStudent(Model model) {
+
+        User user=new User();
+        model.addAttribute("user", user);
+        model.addAttribute("submiturl", "/user/signup/");
+        return "template/createUser";
+    }
+
+    @PostMapping("/user/signup/")
+    public String UserRegister(@ModelAttribute("user") User user, Model model, BindingResult bindingResult){
+        System.out.println("This is inside post mapping ");
+        if(userRepository.getUser(user.getUsername())!=null){
+            bindingResult.rejectValue("username", "Duplicate.user.username");
+        }
+        if(bindingResult.hasErrors()){
+            model.addAttribute("submiturl","/user/signup/");
+            return "template/createUser";
+        }
+        String token = UUID.randomUUID().toString();
+        user.setToken(token);
+        user.setPasswordHash(user.getUsername());
+
+        userRepository.createUser(user);
+
+       //emailService.sendInitialMail(user);
+
+        return "redirect:/template/login";
 
     }
 

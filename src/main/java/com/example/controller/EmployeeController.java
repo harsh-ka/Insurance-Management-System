@@ -6,11 +6,14 @@ import com.example.services.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.dao.EmployeeRepository;
+import com.example.models.Employee;
 import java.util.List;
 
 @Controller
@@ -51,25 +54,39 @@ public class EmployeeController
         User user = securityService.findLoggedInUser();
         List<UserPhoneNumber> userPhoneNumbers = userPhoneNumberRepository.getPhoneNumbersByUsername(user.getUsername());
         Employee employee = employeeRepository.getByUsername(user.getUsername());
-
+        System.out.println(employee);
         if(employee==null)
-            return "redirect:/staff/dashboard";
+            return "redirect:/employee/dashboard";
 
-        model.addAttribute("User", user);
-        model.addAttribute("Employee", employee);
-        model.addAttribute("UserPhoneNumber",userPhoneNumbers);
+        System.out.println(employee);
+
+        model.addAttribute("user", user);
+        model.addAttribute("employee", employee);
+        model.addAttribute("userPhoneNumber",userPhoneNumbers);
         return "employee/profile";
     }
 
     @GetMapping("employee/employee")
-    private String getEmployee(Model model)
+    private String getEmployees(Model model)
     {
         List<Employee> employee = employeeRepository.getAll();
+        System.out.println(employee);
         model.addAttribute("Employee", employee);
 
         return "employee/employee";
     }
 
+    @GetMapping("employee/employee/{id}")
+
+    private String getEmployee(@PathVariable("id") String employeeId,Model model){
+        Employee employee=employeeRepository.getEmployeebyId(employeeId);
+
+        List<UserPhoneNumber> phone=userPhoneNumberRepository.getPhoneNumbersByUsername(employee.getUsername());
+
+        model.addAttribute("Employee",employee);
+        model.addAttribute("Phone",phone);
+        return "employee/viewEmployee";
+    }
     @GetMapping("employee/client")
     private String getClients(Model model)
     {
@@ -82,7 +99,7 @@ public class EmployeeController
     }
 
     @GetMapping("employee/client/{id}")
-    private String getClient(@PathVariable("clientNo") int clientNo, Model model)
+    private String getClient(@PathVariable("id") int clientNo, Model model)
     {
         Client client = clientRepository.getbyClientNo(clientNo);
         if(client == null)
@@ -96,7 +113,6 @@ public class EmployeeController
     }
 
     @GetMapping("employee/agent")
-
     private String getAgents(Model model)
     {
         User user=securityService.findLoggedInUser();

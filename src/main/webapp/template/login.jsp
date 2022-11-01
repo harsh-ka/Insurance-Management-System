@@ -20,7 +20,7 @@ pageEncoding="ISO-8859-1"%>
         </div>
 
         <div class="col-md-6 d-flex align-items-center justify-content-center p-3">
-          <form action="/user/login" method="post">
+          <form action="/welcome" method="post">
                 <div class="d-flex justify-content-center mb-3">
                   <span class="h2 fw-bold mb-0">SIT</span>
                 </div>
@@ -56,7 +56,7 @@ pageEncoding="ISO-8859-1"%>
                     type="password"
                     class="form-control form-control-lg"
                     id="password"
-                    placeholder="Password_name"
+                    placeholder="Password"
                     name="password"
                     required
                   />
@@ -73,7 +73,7 @@ pageEncoding="ISO-8859-1"%>
                     Log In
                   </button>
                 </div>
-
+                <a class="small text-muted" href="/user/signup">Sign Up</a>
                 <a class="small text-muted" href="/user/forgot-password">Forgot password?</a>
               </form>
         </div>

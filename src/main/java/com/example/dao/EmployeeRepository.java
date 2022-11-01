@@ -21,7 +21,7 @@ public class EmployeeRepository
     {
         System.out.println("We are in dao ");
         //String query = "CREATE TABLE IF NOT EXISTS Employee(INT employeeId, DATE joinDate, DATE endDate, STRING FirstName, STRING MiddleName, STRING LastName, STRING email, STRING employeeAddress)";
-        String query = "INSERT INTO Employee(employeeId,joinDate,endDate,FirstName,MiddleName,LastName,email,employeeAddress,admin_id,username) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Employee(employeeId,joinDate,endDate,firstName,middleName,lastName,email,employeeAddress,admin_id,username) VALUES (?,?,?,?,?,?,?,?,?,?)";
         template.update(query, employee.getEmployeeId(),
                 employee.getJoinDate(),
                 employee.getEndDate(),
@@ -39,7 +39,7 @@ public class EmployeeRepository
         String sql = "SELECT * FROM Employee WHERE username = ?";
         try
         {
-            return template.queryForObject(sql, new BeanPropertyRowMapper<>(Employee.class), new Object[]{username});
+            return template.queryForObject(sql, new BeanPropertyRowMapper<Employee>(Employee.class), new Object[]{username});
         }
         catch (EmptyResultDataAccessException e)
         {
@@ -52,14 +52,14 @@ public class EmployeeRepository
     {
         String sql="Select * from Employee where employeeId=?";
         try {
-            return template.queryForObject(sql, new BeanPropertyRowMapper<>(Employee.class), new Object[] { employeeId });
+            return template.queryForObject(sql, new BeanPropertyRowMapper<Employee>(Employee.class), new Object[] { employeeId });
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
     public List<Employee> getEmployeebyFirstName(String FirstName){
-        String sql="Select * from Employee where FirstName=?";
+        String sql="Select * from Employee where firstName=?";
         try {
             return template.query(sql,(rs, rowNum) -> {
                 Employee e=new BeanPropertyRowMapper<Employee>(Employee.class).mapRow(rs,rowNum);
@@ -83,9 +83,14 @@ public class EmployeeRepository
     }
     public List<Employee>  getAll(){
         String sql="Select * from Employee";
-        return template.query(sql,(rs, rowNum) -> {
-            Employee e=new BeanPropertyRowMapper<Employee>(Employee.class).mapRow(rs,rowNum);
-            return e;
-        });
+
+        try {
+            return template.query(sql, (rs, rowNum) -> {
+                Employee e = new BeanPropertyRowMapper<Employee>(Employee.class).mapRow(rs, rowNum);
+                return e;
+            });
+        } catch (EmptyResultDataAccessException e){
+            return  null;
+        }
     }
 }
