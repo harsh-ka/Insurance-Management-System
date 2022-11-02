@@ -23,7 +23,7 @@ pageEncoding="ISO-8859-1"%>
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%;">Agent Name</th>
-                    <td style="width: 50%">${agent.firstName} {agent.middleName} {agent.lastName}</td>
+                    <td style="width: 50%">${agent.firstName} ${agent.middleName} ${agent.lastName}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
@@ -75,10 +75,10 @@ pageEncoding="ISO-8859-1"%>
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${professors}" var="professor">
+                <c:forEach items="${employee}" var="employee">
                     <tr>
                         <td class="align-middle">${employee.employeeId}</td>
-                        <td class="align-middle">${employee.FirstName} ${employee.MiddleName} ${employee.LastName}</td>
+                        <td class="align-middle">${employee.firstName} ${employee.middleName} ${employee.lastName}</td>
                         <td class="align-middle">${employee.email}</td>
                         <td class="align-middle">${employee.joinDate}</td>
                         <td class="align-middle">${employee.endDate}</td>

@@ -31,11 +31,11 @@ pageEncoding="ISO-8859-1"%>
                         <td class="align-middle">${policies.InsuranceId}</td>
                         <td class="align-middle">${policies.StartDate}</td>
                         <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${Policies.StartDate}" />
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${policies.StartDate}" />
                         </td>
-                        <td class="align-middle">${Policies.EndDate}</td>
+                        <td class="align-middle">${policies.EndDate}</td>
                         <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${Policies.EndDate}" />
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${policies.EndDate}" />
                         </td>
 
                     </tr>
