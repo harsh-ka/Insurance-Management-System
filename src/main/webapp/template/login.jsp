@@ -73,8 +73,16 @@ pageEncoding="ISO-8859-1"%>
                     Log In
                   </button>
                 </div>
-                <a class="small text-muted" href="/user/signup">Sign Up</a>
-                <a class="small text-muted" href="/user/forgot-password">Forgot password?</a>
+
+
+
+
+                 <div class="pt-1 mb-3" onclick="location.href='/user/signup'">
+                   <a class="small text-muted" href="/user/signup">Sign Up</a>
+                  </div>
+                 <a class="small text-muted" href="/user/forgot-password">Forgot password?</a>
+
+                  </div>
               </form>
         </div>
       </div>

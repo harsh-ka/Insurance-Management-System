@@ -10,16 +10,16 @@ public class Client
     private int clientNo;
 
     @NotBlank
-    private String FirstName;
-    private String MiddleName;
-    private String LastName;
+    private String firstName;
+    private String middleName;
+    private String lastName;
 
     @NotBlank
     private String clientEmail;
     private String clientContact;
 
     @NotBlank
-    private int HouseNo;
+    private int houseNo;
     private String landMark;
     private String city;
     @NotBlank
@@ -45,27 +45,27 @@ public class Client
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getMiddleName() {
-        return MiddleName;
+        return middleName;
     }
 
     public void setMiddleName(String middleName) {
-        MiddleName = middleName;
+        this.middleName = middleName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getClientEmail() {
@@ -85,11 +85,11 @@ public class Client
     }
 
     public int getHouseNo() {
-        return HouseNo;
+        return houseNo;
     }
 
     public void setHouseNo(int houseNo) {
-        HouseNo = houseNo;
+        this.houseNo = houseNo;
     }
 
     public String getLandMark() {

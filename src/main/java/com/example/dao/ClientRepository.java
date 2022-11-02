@@ -18,7 +18,7 @@ public class ClientRepository {
 
     public void createClient(Client client)
     {
-        String sql = "INSERT INTO Client(clientNo,FirstName,MiddleName,LastName,clientEmail,clientContact,HouseNo,landMark,city,employeeId,username) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Client(clientNo,firstName,middleName,lastName,clientEmail,clientContact,houseNo,landMark,city,employeeId,username) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         template.update(sql,client.getClientNo(),
                 client.getFirstName(),
                 client.getMiddleName(),

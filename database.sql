@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Agent
     houseNo INT NOT NULL,
     landmark VARCHAR(50),
     city VARCHAR(50),
-    Commision INT,
+    commision INT,
     employeeId VARCHAR(50),
     admin_id INT,
     username VARCHAR(100) NOT NULL,
@@ -78,10 +78,10 @@ CREATE TABLE IF NOT EXISTS Client
     clientNo INT,
     clientEmail VARCHAR(50) NOT NULL,
     clientContact VARCHAR(50) NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    MiddleName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    HouseNo INT NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    middleName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    houseNo INT NOT NULL,
     landMark VARCHAR(54) NOT NULL,
     city VARCHAR(50) NOT NULL,
     employeeId VARCHAR(50) ,
@@ -101,25 +101,25 @@ CREATE TABLE  IF NOT EXISTS Insurance
 
 CREATE TABLE IF NOT EXISTS Policies
 (
-    PolicyTerm INT NOT NULL,
-    TotalAmount INT NOT NULL,
-    StartDate DATE NOT NULL,
-    EndDate DATE NOT NULL,
-    InsuranceId VARCHAR(50),
-    FOREIGN KEY (InsuranceId) REFERENCES Insurance(InsuranceId) ON DELETE CASCADE,
-    PRIMARY KEY(PolicyTerm,InsuranceId)
+    policyTerm INT NOT NULL,
+    totalAmount INT NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    insuranceId VARCHAR(50),
+    FOREIGN KEY (insuranceId) REFERENCES insurance(insuranceId) ON DELETE CASCADE,
+    PRIMARY KEY(policyTerm,insuranceId)
 );
 
 CREATE TABLE IF NOT EXISTS Sells
 (
     agentId INT,
     clientNo INT ,
-    InsuranceId VARCHAR(50),
-    PolicyTerm INT ,
+    insuranceId VARCHAR(50),
+    policyTerm INT ,
     buyDate DATE NOT NULL,
     amount INT NOT NULL,
-    FOREIGN KEY (InsuranceId,PolicyTerm) REFERENCES Policies(InsuranceId,PolicyTerm) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (insuranceId,policyTerm) REFERENCES Policies(insuranceId,policyTerm) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(agentId) REFERENCES Agent(agentId) ON DELETE cascade ON UPDATE CASCADE,
     FOREIGN KEY(clientNo) REFERENCES Client(clientNo) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY(InsuranceId, PolicyTerm, clientNo, agentId)
+    PRIMARY KEY(insuranceId, policyTerm, clientNo, agentId)
 );

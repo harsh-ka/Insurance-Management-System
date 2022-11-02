@@ -10,9 +10,9 @@ public class Sells
 
     private int clientNo;
 
-    private int PolicyTerm;
+    private int policyTerm;
 
-    private String InsuranceId;
+    private String insuranceId;
 
     @NotBlank
     private Date buyDate;
@@ -35,19 +35,19 @@ public class Sells
     }
 
     public int getPolicyTerm() {
-        return PolicyTerm;
+        return policyTerm;
     }
 
     public void setPolicyTerm(int policyTerm) {
-        PolicyTerm = policyTerm;
+        this.policyTerm = policyTerm;
     }
 
     public String getInsuranceId() {
-        return InsuranceId;
+        return insuranceId;
     }
 
     public void setInsuranceId(String insuranceId) {
-        InsuranceId = insuranceId;
+        this.insuranceId = insuranceId;
     }
 
     public Date getBuyDate() {

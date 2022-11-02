@@ -17,7 +17,7 @@ public class SellsRepository {
 
     public void SellsCreation(Sells sell)
     {
-        String query = "INSERT INTO Sells(agentId, clientNo, PolicyTerm, InsuranceId, buyDate, amount) VALUES(?,?,?,?,?,?)";
+        String query = "INSERT INTO Sells(agentId, clientNo, policyTerm, insuranceId, buyDate, amount) VALUES(?,?,?,?,?,?)";
         template.update(query, sell.getAgentId(),
                 sell.getClientNo(),
                 sell.getPolicyTerm(),
@@ -73,7 +73,7 @@ public class SellsRepository {
 
     public List<Sells> getsellbyInsuranceid(String InsuranceId)
     {
-        String sql = "SELECT * FROM Sells WHERE InsuranceId = ?";
+        String sql = "SELECT * FROM Sells WHERE insuranceId = ?";
         try
         {
             return template.query(sql,(rs, rowNum) ->{
@@ -89,7 +89,7 @@ public class SellsRepository {
 
     public Sells getsellbyId(int agentId,int clientNo,String InsuranceId)
     {
-        String sql = "SELECT * FROM Sells WHERE agentId = ? AND clientNo = ? AND InsuranceId = ?";
+        String sql = "SELECT * FROM Sells WHERE agentId = ? AND clientNo = ? AND insuranceId = ?";
         try
         {
             return template.queryForObject(sql,new BeanPropertyRowMapper<>(Sells.class),new Object[]{agentId, clientNo, InsuranceId});
@@ -118,7 +118,7 @@ public class SellsRepository {
 
     public void updateSells(Sells sell)
     {
-        String sql = "UPDATE Sells SET buyDate = ?, amount = ? WHERE agentId = ? AND clientNo = ? AND InsuranceId = ?";
+        String sql = "UPDATE Sells SET buyDate = ?, amount = ? WHERE agentId = ? AND clientNo = ? AND insuranceId = ?";
         template.update(sql,sell.getBuyDate(),sell.getAmount(), sell.getAgentId(), sell.getClientNo(), sell.getInsuranceId());
         return ;
     }

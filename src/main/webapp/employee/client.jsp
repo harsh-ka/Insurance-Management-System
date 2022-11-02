@@ -17,7 +17,9 @@ pageEncoding="ISO-8859-1"%>
                 <thead>
                     <tr>
                         <th>Client Number</th>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
                         <th>Employee Id</th>
                         <th>username</th>
                         <th>Email</th>

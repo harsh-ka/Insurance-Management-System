@@ -15,55 +15,45 @@ public class Policies
     @NotBlank
     private Date EndDate;
 
-    private String InsuranceId;
+    private String insuranceId;
 
-    public int getPolicyTerm()
-    {
-        return PolicyTerm;
+    public int getPolicyTerm() {
+        return policyTerm;
     }
 
-    public void setPolicyTerm(int policyTerm)
-    {
-        PolicyTerm = policyTerm;
+    public void setPolicyTerm(int policyTerm) {
+        this.policyTerm = policyTerm;
     }
 
-    public int getTotalAmount()
-    {
-        return TotalAmount;
+    public int getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotalAmount(int totalAmount)
-    {
-        TotalAmount = totalAmount;
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public Date getStartDate()
-    {
-        return StartDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStartDate(Date startDate)
-    {
-        StartDate = startDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEndDate()
-    {
-        return EndDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndDate(Date endDate)
-    {
-        EndDate = endDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
-    public String getInsuranceId()
-    {
-        return InsuranceId;
+    public String getInsuranceId() {
+        return insuranceId;
     }
 
-    public void setInsuranceId(String insuranceId)
-    {
-        InsuranceId = insuranceId;
+    public void setInsuranceId(String insuranceId) {
+        this.insuranceId = insuranceId;
     }
 }

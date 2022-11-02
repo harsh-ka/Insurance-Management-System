@@ -45,4 +45,13 @@ public class Insurance
                 ", InsuranceName='" + InsuranceName + '\'' +
                 '}';
     }
+
+    @Override
+    public String toString() {
+        return "Insurance{" +
+                "insuranceId='" + insuranceId + '\'' +
+                ", insuranceType='" + insuranceType + '\'' +
+                ", insuranceName='" + insuranceName + '\'' +
+                '}';
+    }
 }

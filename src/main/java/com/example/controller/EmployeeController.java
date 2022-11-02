@@ -102,6 +102,7 @@ public class EmployeeController
     private String getClient(@PathVariable("id") int clientNo, Model model)
     {
         Client client = clientRepository.getbyClientNo(clientNo);
+
         if(client == null)
         {
             return "redirect:/employee/client";
