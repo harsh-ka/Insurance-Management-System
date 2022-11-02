@@ -4,6 +4,7 @@ import com.example.dao.*;
 import com.example.models.*;
 import com.example.services.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ import com.example.models.Employee;
 import java.util.List;
 
 @Controller
-@Transactional
 public class EmployeeController
 {
     @Autowired
@@ -77,13 +77,13 @@ public class EmployeeController
     }
 
     @GetMapping("employee/employee/{id}")
-
     private String getEmployee(@PathVariable("id") String employeeId,Model model){
+
         Employee employee=employeeRepository.getEmployeebyId(employeeId);
 
         List<UserPhoneNumber> phone=userPhoneNumberRepository.getPhoneNumbersByUsername(employee.getUsername());
 
-        model.addAttribute("Employee",employee);
+        model.addAttribute("employee",employee);
         model.addAttribute("Phone",phone);
         return "employee/viewEmployee";
     }

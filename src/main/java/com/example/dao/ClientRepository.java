@@ -74,7 +74,7 @@ public class ClientRepository {
         String sql = "SELECT * FROM Client WHERE username = ?";
         try
         {
-            return template.queryForObject(sql, new BeanPropertyRowMapper<>(Client.class), new Object[]{username});
+            return template.queryForObject(sql, new BeanPropertyRowMapper<Client>(Client.class), new Object[]{username});
         }
         catch (EmptyResultDataAccessException e)
         {

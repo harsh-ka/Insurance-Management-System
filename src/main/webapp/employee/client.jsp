@@ -30,12 +30,13 @@ pageEncoding="ISO-8859-1"%>
                 <c:forEach items="${Client}" var="client">
                     <tr>
                         <td class="align-middle">${client.clientNo}</td>
-                        <td class="align-middle">${client.Name}</td>
+
+
                         <td class="align-middle">${client.employeeId}</td>
                         <td class="align-middle">${client.username}</td>
                         <td class="align-middle">${client.clientEmail}</td>
                         <td class="align-middle">${client.clientContact}</td>
-                        <td class="align-middle">${client.HouseNo} ${client.landMark} ${client.city}</td>
+
                     </tr>
                 </c:forEach>
                 </tbody>

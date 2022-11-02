@@ -28,22 +28,23 @@ pageEncoding="ISO-8859-1"%>
                 </thead>
                 <tbody>
                 <c:forEach items="${Employee}" var="employee">
+
                     <tr>
-                        <td class="align-middle">${employee.employeeId}</td>
-                        <td class="align-middle">${employee.FirstName} ${Employee.MiddleName} ${Employee.LastName}</td>
+                        <td class="align-middle"><a href="employee/${employee.employeeId}">${employee.employeeId}</a></td>
+                        <td class="align-middle">${employee.firstName} ${employee.middleName} ${employee.lastName}</td>
                         <td class="align-middle">${employee.admin_id}</td>
                         <td class="align-middle">${employee.username}</td>
                         <td class="align-middle">${employee.joinDate}</td>
                         <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${Employee.joinDate}" />
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${employee.joinDate}" />
                         </td>
-                        <td class="align-middle">${Employee.endDate}</td>
+                        <td class="align-middle">${employee.endDate}</td>
                         <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${Employee.endDate}" />
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${employee.endDate}" />
                         </td>
 
-                        <td class="align-middle">${Employee.email}</td>
-                        <td class="align-middle">${Employee.employeeAddress}</td>
+                        <td class="align-middle">${employee.email}</td>
+                        <td class="align-middle">${employee.employeeAddress}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
