@@ -65,7 +65,7 @@ public class Agent
         return middleName;
     }
 
-    public void setMiddleName(String midddleName) {
+    public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 

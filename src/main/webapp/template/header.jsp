@@ -77,7 +77,7 @@ pageEncoding="ISO-8859-1"%>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                          <a href="/user/logout" class="btn btn-primary" role="button">Logout</a>
+                          <a href="/user/login?logout" class="btn btn-primary" role="button">Logout</a>
                         </div>
                       </div>
                     </div>

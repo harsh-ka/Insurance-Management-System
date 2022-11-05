@@ -8,7 +8,7 @@ pageEncoding="ISO-8859-1"%>
 
 <div class="container my-4 px-3">
     <div class="d-flex align-items-center">
-        <h2 style="cursor : pointer;" onclick="location.href='/employee/employee'"> Employee </h2>
+        <h2 style="cursor : pointer;" onclick="location.href='/admin/employees'"> Employee </h2>
         <h3 class="ms-2">${employee.employeeId}</h3>
     </div>
     <div class="row justify-content-center">
@@ -51,16 +51,44 @@ pageEncoding="ISO-8859-1"%>
                     <th style="width: 35%">End Date</th>
                     <td style="width: 50%"><fmt:formatDate pattern="dd-MM-yyyy" value="${employee.endDate}" /></td>
                </tr>
-                <tr>
-                 <td style="width: 15%"></td>
-                 <th style="width: 35%">Admin Id</th>
-                 <td style="width: 50%">${employee.admin_id}</td>
-              </tr>
+
                <tr>
-               <td style="width: 15%"></td>
-               <th style="width: 35%">Role</th>
-               <td style="width: 50%">${user.role}</td>
-            </tr>
+                <td style="width: 15%"></td>
+                <th style="width: 35%">Role</th>
+                <td style="width: 50%">${user.role}</td>
+               </tr>
+
+               <table id="example" class="table table-hover">
+                       <thead>
+                           <tr>
+                               <th>Client Number</th>
+                               <th>First Name</th>
+                               <th>Middle Name</th>
+                               <th>Last Name</th>
+                               <th>Contact</th>
+                               <th>Email</th>
+                               <th>Employee Id</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                       <c:forEach items="${Client}" var="client">
+                           <tr>
+                                <td class="align-middle">${client.clientNo}</td>
+                                <td class="align-middle">${client.firstName}</td>
+                                <td class="align-middle">${client.middleName}</td>
+                                <td class="align-middle">${client.lastName}</td>
+                                <td class="align-middle">${client.clientContact}</td>
+                                <td class="align-middle">${client.clientEmail}</td>
+                                <td class="align-middle">${client.employeeId}</td>
+                              <td class="align-middle">
+                              <button class="btn btn-dark btn-block" onclick="location.href = '/admin/clients/${client.clientNo}'" >
+                                 ViewProfile
+                               </button>
+                               </td>
+                           </tr>
+
+                       </c:forEach>
+               </tbody>
 
             </table>
 
@@ -70,9 +98,3 @@ pageEncoding="ISO-8859-1"%>
 </div>
 
 <%@ include file="/template/footer.jsp" %>
-
-
-
-
-
-

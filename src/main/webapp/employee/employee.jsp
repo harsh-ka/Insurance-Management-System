@@ -4,7 +4,7 @@ pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="/template/header.jsp" %>
+<%@ include file="header.jsp" %>
 
 <div class="container my-4 px-3">
     <h2>Employee</h2>
@@ -16,36 +16,31 @@ pageEncoding="ISO-8859-1"%>
             <table id="example" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Employee Id</th>
-                        <th>Name</th>
-                        <th>Admin Id</th>
-                        <th>username</th>
-                        <th>Join Date</th>
-                        <th>End Date</th>
+                        <th>EmployeeId</th>
+                        <th>First Name</th>
+
+                        <th>Last Name</th>
+                        <th>JoinDate</th>
                         <th>Email</th>
-                        <th>Address</th>
+                        <th>View Profile</th>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${Employee}" var="employee">
-
                     <tr>
-                        <td class="align-middle"><a href="employee/${employee.employeeId}">${employee.employeeId}</a></td>
-                        <td class="align-middle">${employee.firstName} ${employee.middleName} ${employee.lastName}</td>
-                        <td class="align-middle">${employee.admin_id}</td>
-                        <td class="align-middle">${employee.username}</td>
-                        <td class="align-middle">${employee.joinDate}</td>
-                        <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${employee.joinDate}" />
-                        </td>
-                        <td class="align-middle">${employee.endDate}</td>
-                        <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${employee.endDate}" />
-                        </td>
+                         <td class="align-middle">${employee.employeeId}</td>
+                         <td class="align-middle">${employee.firstName}</td>
 
-                        <td class="align-middle">${employee.email}</td>
-                        <td class="align-middle">${employee.employeeAddress}</td>
+                         <td class="align-middle">${employee.lastName}</td>
+                         <td class="align-middle">${employee.email}</td>
+                         <td class="align-middle">${employee.joinDate}</td>
+                       <td class="align-middle">
+                       <button class="btn btn-dark btn-block" onclick="location.href = 'employee/${employee.employeeId}'" >
+                          ViewProfile
+                        </button>
+                        </td>
                     </tr>
+
                 </c:forEach>
                 </tbody>
             </table>

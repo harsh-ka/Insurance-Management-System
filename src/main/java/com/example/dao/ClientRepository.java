@@ -82,4 +82,13 @@ public class ClientRepository {
         }
     }
 
+    public int updateClient(Client client){
+        String sql="Update Client SET firstName=?,lastName=?,middleName=?,clientEmail=?,clientContact=?,landMark=?" +
+                " Where clientNo=?";
+
+        return template.update(sql,client.getFirstName(),client.getLastName(),client.getMiddleName()
+                ,client.getClientEmail(),client.getClientContact(),client.getLandMark(), client.getClientNo());
+
+    }
+
 }

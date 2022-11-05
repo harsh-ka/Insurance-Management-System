@@ -71,15 +71,16 @@ public class EmployeeRepository
 
     }
 
-    public void UpdateEmployee(Employee employee){
-        String sql="UPDATE Employee SET  email=?,employeeAddress=? WHERE employeeId = ?";
-        try {
-            template.update(sql, employee.getEmail(), employee.getEmployeeAddress(), employee.getEmployeeId());
-            return;
-        }
-        catch (EmptyResultDataAccessException e){
-            return;
-        }
+    public int updateEmployee(Employee employee){
+        String sql="UPDATE Employee SET firstName=?, middleName=?, lastName=?, email=?,employeeAddress=? WHERE employeeId = ?";
+
+           return template.update(sql, employee.getFirstName(),
+                            employee.getMiddleName(),
+                            employee.getLastName(),
+                               employee.getEmail(),
+                               employee.getEmployeeAddress(),
+                               employee.getEmployeeId());
+
     }
     public List<Employee>  getAll(){
         String sql="Select * from Employee";

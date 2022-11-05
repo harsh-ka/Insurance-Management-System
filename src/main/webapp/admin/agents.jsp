@@ -17,27 +17,36 @@ pageEncoding="ISO-8859-1"%>
                 <thead>
                     <tr>
                         <th>Agent Id</th>
-                        <th>License Number</th>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
                         <th>Employee Id </th>
-                        <th>username</th>
-                        <th>Admin Id</th>
-                        <th>Commission</th>
                         <th>Address</th>
-
+                        <th>View Profile</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${Agent}" var="agent">
                     <tr>
                         <td class="align-middle">${agent.agentId}</td>
-                        <td class="align-middle">${agent.licenceNo}</td>
-                        <td class="align-middle">${agent.firstName} ${agent.middleName} ${agent.lastName}</td>
+                        <td class="align-middle">${agent.firstName}</td>
+                        <td class="align-middle">${agent.middleName}</td>
+                        <td class="align-middle">${agent.lastName}</td>
                         <td class="align-middle">${agent.employeeId}</td>
-                        <td class="align-middle">${agent.username}</td>
-                        <td class="align-middle">${agent.admin_id}</td>
-                        <td class="align-middle">${agent.Commision}</td>
                         <td class="align-middle">${agent.houseNo} ${agent.landmark} ${agent.city}</td>
+
+                        <td class="align-middle">
+                           <button class="btn btn-dark btn-block" onclick="location.href = '/admin/agents/${agent.agentId}'" >
+                              View Agents
+                           </button>
+                        </td>
+
+                        <td class="align-middle">
+                           <button class="btn btn-dark btn-block" onclick="location.href = '/admin/agents/${agent.agentId}/edit'" >
+                              Edit
+                           </button>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -97,11 +97,11 @@ public class LoginController {
     public String UserRegister(@ModelAttribute("user") User user, Model model, BindingResult bindingResult){
         System.out.println("This is inside post mapping ");
         if(userRepository.getUser(user.getUsername())!=null){
-            bindingResult.rejectValue("username", "Duplicate.user.username");
+            bindingResult.rejectValue("username", "Duplicate.username");
         }
         if(bindingResult.hasErrors()){
             model.addAttribute("submiturl","/user/signup/");
-            return "template/createUser";
+            return "redirect:/template/createUser";
         }
         String token = UUID.randomUUID().toString();
         user.setToken(token);
@@ -112,7 +112,6 @@ public class LoginController {
        //emailService.sendInitialMail(user);
 
         return "redirect:/template/login";
-
     }
 
     @GetMapping("/user/forgot-password")

@@ -40,6 +40,7 @@ public class SellsRepository {
             return null;
         }
     }
+
     public List<Sells> getsellbyclientNoAndAgentId(int clientNo,int agentId){
         String sql="SELECT * FROM Sells WHERE clientNo=? AND agentId=?";
         try

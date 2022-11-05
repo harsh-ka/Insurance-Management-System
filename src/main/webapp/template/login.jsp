@@ -11,7 +11,7 @@ pageEncoding="ISO-8859-1"%>
       <div class="row">
         <div class="col-md-6 d-none d-md-block p-0">
           <img 
-            src="/img/login.jpg"
+            src="/img/login.png"
             alt="login form"
             class="rounded"
             width="100%"

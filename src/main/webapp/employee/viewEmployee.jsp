@@ -37,20 +37,15 @@ pageEncoding="ISO-8859-1"%>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
-                    <th style="width: 35%;">AdminId</th>
-                    <td style="width: 50%">${employee.admin_id}</td>
-                </tr>
-                <tr>
-                    <td style="width: 15%"></td>
-                    <th style="width: 35%">Username</th>
-                    <td style="width: 50%">${employee.username}</td>
-                </tr>
+                    <th style="width: 35%">Date of Birth</th>
+                    <td style="width: 50%"><fmt:formatDate pattern="dd-MM-yyyy" value="${user.dateOfBirth}" /></td>
+                 </tr>
+
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%">Join Date</th>
                     <td style="width: 50%"><fmt:formatDate pattern="dd-MM-yyyy" value="${employee.joinDate}" /></td>
                 </tr>
-
                <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%">End Date</th>

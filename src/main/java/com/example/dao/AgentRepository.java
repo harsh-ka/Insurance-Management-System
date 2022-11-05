@@ -102,8 +102,8 @@ public class AgentRepository {
     public void updateAgent(Agent agent){
         String sql="Update Agent SET admin_id=?,employeeId=?,Commision=? Where agentId=?";
 
-        template.update(sql,agent.getAdmin_id(),agent.getEmployeeId(),agent.getCommision(),agent.getAgentId());
-
-        return ;
+        return template.update(sql,agent.getFirstName(),agent.getLastName(),
+                agent.getMiddleName(),agent.getLandmark(),
+                agent.getCommision(),agent.getAgentId());
     }
 }

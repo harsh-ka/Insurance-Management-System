@@ -8,8 +8,8 @@ pageEncoding="ISO-8859-1"%>
 
 <div class="container my-4 px-3">
     <div class="d-flex align-items-center">
-        <h2 style="cursor : pointer;" onclick="location.href='/employee/agent'">Agent  >  </h2>
-        <h3 class="ms-2">${agent.agentId}</h3>
+        <h2 style="cursor : pointer;" onclick="location.href='/admin/client'">Client  >  </h2>
+        <h3 class="ms-2">${client.clientNo}</h3>
     </div>
     <div class="row justify-content-center">
         <div class="card mt-4 col-lg-10 py-4 shadow" style="padding-left: 5%; padding-right: 5%">
@@ -17,71 +17,70 @@ pageEncoding="ISO-8859-1"%>
             <table class="table table-borderless mt-3">
                 <tr>
                     <td style="width: 15%"></td>
-                    <th style="width: 35%;">AgentId</th>
-                    <td style="width: 50%">${agent.agentId}</td>
+                    <th style="width: 35%;">Client Number</th>
+                    <td style="width: 50%">${client.clientNo}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%;">Agent Name</th>
-                    <td style="width: 50%">${agent.firstName} ${agent.middleName} ${agent.lastName}</td>
+                    <td style="width: 50%">${client.firstName} ${client.middleName} ${client.lastName}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%;">Address</th>
-                    <td style="width: 50%">${agent.houseNo} ${agent.landmark} ${agent.city}</td>
+                    <td style="width: 50%">${client.houseNo} ${client.landMark} ${client.city}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
-                    <th style="width: 35%;">Licence Number</th>
-                    <td style="width: 50%">${agent.licenceNo}</td>
+                    <th style="width: 35%;">Email</th>
+                    <td style="width: 50%">${agent.clientEmail}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%;">Employee Id</th>
-                    <td style="width: 50%">${agent.employeeId}</td>
+                    <td style="width: 50%">${client.employeeId}</td>
                 </tr>
 
                 <tr>
                     <td style="width: 15%"></td>
-                    <th style="width: 35%">AdminId</th>
-                    <td style="width: 50%">${agent.admin_id}</td>
-                </tr>
-
-                <tr>
-                    <td style="width: 15%"></td>
-                    <th style="width: 35%">Commision</th>
-                    <td style="width: 50%">${agent.Commision}</td>
+                    <th style="width: 35%">Contact</th>
+                    <td style="width: 50%">${client.clientContact}</td>
                 </tr>
 
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%">Username</th>
-                    <td style="width: 50%">${agent.username}</td>
+                    <td style="width: 50%">${client.username}</td>
                 </tr>
 
             </table>
 
-            <h4 class="text-center pt-2">Total Sells</h4>
+            <h4 class="text-center pt-2">Sells</h4>
 
             <div class="table-responsive mt-3 p-1">
             <table id="example" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Employee Id</th>
-                        <th>Employee Name</th>
-                        <th>Email Address</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                        <th>Agent Id</th>
+                        <th>Client Number</th>
+                        <th>Policy Term</th>
+                        <th>Insurance Id</th>
+                        <th>Buy Date</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${employee}" var="employee">
+                <c:forEach items="${Sells}" var="sell">
                     <tr>
-                        <td class="align-middle">${employee.employeeId}</td>
-                        <td class="align-middle">${employee.firstName} ${employee.middleName} ${employee.lastName}</td>
-                        <td class="align-middle">${employee.email}</td>
-                        <td class="align-middle">${employee.joinDate}</td>
-                        <td class="align-middle">${employee.endDate}</td>
+                        <td class="align-middle">${sell.agentId}</td>
+                        <td class="align-middle">${sell.clientNo}</td>
+                        <td class="align-middle">${sell.policyTerm}</td>
+                        <td class="align-middle">${sell.insuranceId}</td>
+
+                        <td class="align-middle">
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${sell.buyDate}" />
+                        </td>
+                        <td class="align-middle">${sell.amount}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
