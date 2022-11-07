@@ -42,13 +42,36 @@
             <div class="row mt-3">
                  <div class="col-lg-6">
                 <table class="table table-borderless mb-0">
+
+                    <tr>
+                        <th style="width: 40%">Agent Id</th>
+                        <td style="width: 60%">
+                        <input type="number" class="form-control" name="id" required="true" placeholder="agentId"></input>
+
+                        </td>
+                    </tr>
                     <tr>
                         <th style="width: 40%">Username</th>
                         <td style="width: 60%">
-                        <form:input type="text" path="username" class="form-control" required="true" disabled="true"></form:input>
+                        <form:input type="text" path="username" class="form-control" required="true"></form:input>
                         <form:errors path="username" style="color: red;"></form:errors>
                         </td>
                     </tr>
+
+                    <tr>
+                        <th style="width: 40%">Password</th>
+                        <td style="width: 60%">
+                        <form:input type="password" path="passwordHash" class="form-control" required="true" ></form:input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="width: 40%">Licence Number</th>
+                        <td style="width: 60%">
+                        <input type="text" value="" class="form-control" name="licenceNo" required="true" placeholder="Licence Number"></input>
+                        <errors name="licenceNo" style="color: red;"></errors>
+                        </td>
+                    </tr>
+
                     <tr>
                         <th style="width: 40%">First Name</th>
                         <td style="width: 60%">
@@ -121,6 +144,19 @@
                             <input type="number" value="${agent.commision}" name="commision" class="form-control" required="true" placeholder="Commision"></input>
                         </td>
                     </tr>
+
+                    <tr>
+                        <th style="width: 40%">Employee Id</th>
+                        <td style="width: 60%">
+                            <select class="form-control" name="employeeId" class="form-control"  required="true">
+                               <c:forEach items="${employees}" var="employee">
+                               <option value="${employee.employeeId}">${employee.employeeId}</option>
+                               </c:forEach>
+                            </select>
+
+                        </td>
+                    </tr>
+
                 </table>
             </div>
             </div>

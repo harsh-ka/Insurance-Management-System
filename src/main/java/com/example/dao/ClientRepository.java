@@ -16,10 +16,10 @@ public class ClientRepository {
     @Autowired
     private JdbcTemplate template;
 
-    public void createClient(Client client)
+    public int  createClient(Client client)
     {
         String sql = "INSERT INTO Client(clientNo,firstName,middleName,lastName,clientEmail,clientContact,houseNo,landMark,city,employeeId,username) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-        template.update(sql,client.getClientNo(),
+       return  template.update(sql,client.getClientNo(),
                 client.getFirstName(),
                 client.getMiddleName(),
                 client.getLastName(),

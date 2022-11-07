@@ -4,14 +4,17 @@ package com.example.controller;
 import com.example.dao.*;
 import com.example.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.UUID;
+import java.sql.Date;
 
 @Controller
 
@@ -43,6 +46,9 @@ public class AdminController
 
     @Autowired
     UserPhoneNumberRepository userPhoneNumberRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/admin/dashboard")
     public String getdashboard(Model model){
@@ -276,7 +282,7 @@ public class AdminController
         int user_affect = userRepository.updateUser(curuser);
 
         System.out.println("agent affected " + agent_affect + "user affected " + user_affect);
-        String submit = "/admin/agents/" + agentId + "/edit";
+        String submit = "admin/agents/" + agentId + "/edit";
         if (agent_affect != 0 && user_affect != 0) {
             submit = submit + "?success";
         } else {
@@ -286,4 +292,60 @@ public class AdminController
         model.addAttribute("submiturl", "/admin/agents/" + agentId + "/edit");
         return "redirect:/" + submit;
     }
+
+
+    @GetMapping("admin/clients/{clientId}/edit")
+    private String editClient(@PathVariable("clientId") int clientId, Model model, String success, String failed) {
+        Client client = clientRepository.getbyClientNo(clientId);
+        User user = userRepository.getUser(client.getUsername());
+        if (success != null) model.addAttribute("success", "Your update is success");
+        if (failed != null) model.addAttribute("error", "Your update is failed");
+
+        model.addAttribute("user", user);
+
+        model.addAttribute("client", client);
+
+        model.addAttribute("submiturl", "/admin/clients/" + clientId + "/edit");
+
+        return "admin/editClients";
+
+    }
+
+    @PostMapping("admin/clients/{clientId}/edit")
+    private String editClient(@PathVariable("clientId") int clientId, @ModelAttribute("user") User user, @RequestParam("middleName") String middleName,
+                              @RequestParam("contact") String contact, Model model, BindingResult bindingResult) {
+
+        Client client = clientRepository.getbyClientNo(clientId);
+        User curuser = userRepository.getUser(client.getUsername());
+        client.setFirstName(user.getFirstName());
+        client.setLastName(user.getLastName());
+        client.setMiddleName(middleName);
+
+        client.setClientEmail(user.getEmailAddress());
+        client.setClientContact(contact);
+        client.setLandMark(user.getAddress());
+
+        curuser.setFirstName(user.getFirstName());
+        curuser.setLastName(user.getLastName());
+        curuser.setAddress(user.getAddress());
+        curuser.setDateOfBirth(user.getDateOfBirth());
+        curuser.setGender(user.getGender());
+
+        String token = UUID.randomUUID().toString();
+
+        curuser.setToken(token);
+
+        int client_affect = clientRepository.updateClient(client);
+        int user_affect = userRepository.updateUser(curuser);
+
+        System.out.println("agent affected " + clientId + "user affected " + user_affect);
+        String submit = "admin/clients/" + clientId + "/edit";
+        if (client_affect != 0 && user_affect != 0) {
+            submit = submit + "?success";
+        } else {
+            model.addAttribute("user", curuser);
+            submit = submit + "?failed";
+        }
+        model.addAttribute("submiturl", "/admin/clients/" + clientId + "/edit");
+        return "redirect:/" + submit;
     }

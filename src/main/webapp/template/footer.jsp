@@ -3,7 +3,7 @@
 
 <footer class="footer mt-auto text-white text-center text-lg-start bg-dark">
     <div class="text-center p-3">
-      &copy 2021 Copyright Srinivasa Institute of Technology
+      &copy 2022 Insurance Management System
     </div>
 </footer>
 

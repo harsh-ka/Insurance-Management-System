@@ -33,7 +33,7 @@ pageEncoding="ISO-8859-1"%>
                 <tr>
                     <td style="width: 15%"></td>
                     <th style="width: 35%;">Email</th>
-                    <td style="width: 50%">${agent.clientEmail}</td>
+                    <td style="width: 50%">${client.clientEmail}</td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>

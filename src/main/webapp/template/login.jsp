@@ -22,7 +22,7 @@ pageEncoding="ISO-8859-1"%>
         <div class="col-md-6 d-flex align-items-center justify-content-center p-3">
           <form action="/welcome" method="post">
                 <div class="d-flex justify-content-center mb-3">
-                  <span class="h2 fw-bold mb-0">SIT</span>
+                  <span class="h2 fw-bold mb-0">IMS</span>
                 </div>
                 
                 <c:if test="${not empty success}">

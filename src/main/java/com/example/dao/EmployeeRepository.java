@@ -17,12 +17,11 @@ public class EmployeeRepository
 {
     @Autowired
     private JdbcTemplate template;
-    public void createEmployee(Employee employee)
+    public int createEmployee(Employee employee)
     {
         System.out.println("We are in dao ");
-        //String query = "CREATE TABLE IF NOT EXISTS Employee(INT employeeId, DATE joinDate, DATE endDate, STRING FirstName, STRING MiddleName, STRING LastName, STRING email, STRING employeeAddress)";
         String query = "INSERT INTO Employee(employeeId,joinDate,endDate,firstName,middleName,lastName,email,employeeAddress,admin_id,username) VALUES (?,?,?,?,?,?,?,?,?,?)";
-        template.update(query, employee.getEmployeeId(),
+         return template.update(query,employee.getEmployeeId(),
                 employee.getJoinDate(),
                 employee.getEndDate(),
                 employee.getFirstName(),

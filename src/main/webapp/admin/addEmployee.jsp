@@ -11,10 +11,10 @@
     <h2>
         <c:choose>
             <c:when test="${not empty edit}">
-                Edit Agent
+                Edit Client
             </c:when>
             <c:otherwise>
-                Add Agent
+                Add Employee
             </c:otherwise>
         </c:choose>
     </h2>
@@ -42,11 +42,24 @@
             <div class="row mt-3">
                  <div class="col-lg-6">
                 <table class="table table-borderless mb-0">
+                <tr>
+                    <th style="width: 40%">Employee Id</th>
+                    <td style="width: 60%">
+                    <input type="text" name="id" required="true"> </input>
+                    </td>
+                </tr>
                     <tr>
                         <th style="width: 40%">Username</th>
                         <td style="width: 60%">
-                        <form:input type="text" path="username" class="form-control" required="true" disabled="true"></form:input>
+                        <form:input type="text" path="username" class="form-control" required="true" ></form:input>
                         <form:errors path="username" style="color: red;"></form:errors>
+                        </td>
+                    </tr>
+                     <tr>
+                        <th style="width: 40%">Password</th>
+                        <td style="width: 60%">
+                        <form:input type="password" path="passwordHash" class="form-control" required="true" ></form:input>
+
                         </td>
                     </tr>
                     <tr>
@@ -59,7 +72,7 @@
                     <tr>
                         <th style="width: 40%">Middle Name</th>
                         <td style="width: 60%">
-                            <input type="text" name="middleName" value="${agent.middleName}" class="form-control" required="true" placeholder="Middle Name"></input>
+                            <input type="text" name="middleName" value="${client.middleName}" required="true" placeholder="Middle Name"></input>
                             <errors name="middleName" style="color: red;"></errors>
                         </td>
                     </tr>
@@ -77,6 +90,7 @@
                             <form:errors path="emailAddress" style="color: red;"></form:errors>
                         </td>
                     </tr>
+
                     <tr>
                         <th style="width: 40%">Date of Birth</th>
                         <td style="width: 60%">
@@ -116,11 +130,29 @@
                     </tr>
 
                     <tr>
-                        <th style="width: 40%">Commission</th>
+                        <th style="width: 40%">Token</th>
                         <td style="width: 60%">
-                            <input type="number" value="${agent.commision}" name="commision" class="form-control" required="true" placeholder="Commision"></input>
+                            <form:input type="text" path="token" class="form-control" required="true" placeholder="Token" disabled="true"></form:input>
+                            <form:errors path="token" style="color: red;"></form:errors>
                         </td>
                     </tr>
+
+                    <tr>
+                        <th style="width: 40%">Join Date</th>
+                        <td style="width: 60%">
+                            <input type="date" value="${joinDate}"  name="joinDate" disabled="true"> </input>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th style="width: 40%">End Date</th>
+                        <td style="width: 60%">
+                            <input type="date" name="endDate" disabled="true"> </input>
+
+                        </td>
+                    </tr>
+
+
                 </table>
             </div>
             </div>

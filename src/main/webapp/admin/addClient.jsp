@@ -11,10 +11,10 @@
     <h2>
         <c:choose>
             <c:when test="${not empty edit}">
-                Edit Agent
+                Edit Client
             </c:when>
             <c:otherwise>
-                Add Agent
+                Add Client
             </c:otherwise>
         </c:choose>
     </h2>
@@ -43,10 +43,22 @@
                  <div class="col-lg-6">
                 <table class="table table-borderless mb-0">
                     <tr>
+                        <th style="width: 40%">Client Number</th>
+                        <td style="width: 60%">
+                        <input type="number" name="clientNo" class="form-control" required="true" placeholder="clientNo"></input>
+                        </td>
+                    </tr>
+                    <tr>
                         <th style="width: 40%">Username</th>
                         <td style="width: 60%">
-                        <form:input type="text" path="username" class="form-control" required="true" disabled="true"></form:input>
+                        <form:input type="text" path="username" class="form-control" required="true" ></form:input>
                         <form:errors path="username" style="color: red;"></form:errors>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="width: 40%">Password</th>
+                        <td style="width: 60%">
+                        <form:input type="password" path="passwordHash" class="form-control" required="true" ></form:input>
                         </td>
                     </tr>
                     <tr>
@@ -59,7 +71,7 @@
                     <tr>
                         <th style="width: 40%">Middle Name</th>
                         <td style="width: 60%">
-                            <input type="text" name="middleName" value="${agent.middleName}" class="form-control" required="true" placeholder="Middle Name"></input>
+                            <input type="text" name="middleName" class="form-control" value="${client.middleName}" required="true" placeholder="Middle Name"></input>
                             <errors name="middleName" style="color: red;"></errors>
                         </td>
                     </tr>
@@ -75,6 +87,12 @@
                         <td style="width: 60%">
                             <form:input type="email" path="emailAddress" class="form-control" required="true" placeholder="Email"></form:input>
                             <form:errors path="emailAddress" style="color: red;"></form:errors>
+                        </td>
+                    </tr>
+                     <tr>
+                        <th style="width: 40%">Contact</th>
+                        <td style="width: 60%">
+                            <input type="tel" id="phone" value="${client.clientContact}" name="contact" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required> </input>
                         </td>
                     </tr>
                     <tr>
@@ -116,11 +134,18 @@
                     </tr>
 
                     <tr>
-                        <th style="width: 40%">Commission</th>
+                        <th style="width: 40%">Employee Id</th>
                         <td style="width: 60%">
-                            <input type="number" value="${agent.commision}" name="commision" class="form-control" required="true" placeholder="Commision"></input>
+                            <select class="form-control" name="employeeId" class="form-control" required="true">
+                               <c:forEach items="${employees}" var="employee">
+                               <option value="${employee.employeeId}">${employee.employeeId}</option>
+                               </c:forEach>
+                            </select>
+
                         </td>
                     </tr>
+
+
                 </table>
             </div>
             </div>

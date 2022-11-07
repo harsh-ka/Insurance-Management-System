@@ -7,6 +7,11 @@
 
 <%@ include file="/template/header.jsp" %>
 
+<c:if test="${not empty error}">
+    <div class="alert alert-danger" role="alert">
+      ${error}
+    </div>
+</c:if>
 <div class="container my-4 px-3">
     <h2>
         <c:choose>

@@ -19,11 +19,11 @@ public class UserRepository {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void createUser(User user) {
+    public int createUser(User user) {
         user.setPasswordHash(bCryptPasswordEncoder.encode(user.getPasswordHash()));
         String sql = "INSERT INTO User (username, passwordHash, firstName, lastName, dateOfBirth, emailAddress, gender, address, lastLoginTime, token, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        template.update(sql, user.getUsername(), user.getPasswordHash(), user.getFirstName(), user.getLastName(),
+        return template.update(sql, user.getUsername(), user.getPasswordHash(), user.getFirstName(), user.getLastName(),
                 user.getDateOfBirth(), user.getEmailAddress(), user.getGender(), user.getAddress(),
                 user.getLastLoginTime(), user.getToken(), user.getRole());
 

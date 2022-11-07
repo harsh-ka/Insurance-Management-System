@@ -64,7 +64,7 @@ public class LoginController {
     public String user() {
         User user = securityService.findLoggedInUser();
      //   System.out.println(employeeRepository.getAll());
-      //  System.out.println(user);
+       System.out.println(user);
         if (user == null)
             return "redirect:/user/login?error";
 
@@ -95,13 +95,13 @@ public class LoginController {
 
     @PostMapping("/user/signup/")
     public String UserRegister(@ModelAttribute("user") User user, Model model, BindingResult bindingResult){
-        System.out.println("This is inside post mapping ");
         if(userRepository.getUser(user.getUsername())!=null){
             bindingResult.rejectValue("username", "Duplicate.username");
         }
         if(bindingResult.hasErrors()){
+            model.addAttribute("error","Please Enter Unique username!!!!!!!!!!!!!!!!");
             model.addAttribute("submiturl","/user/signup/");
-            return "redirect:/template/createUser";
+            return "template/createUser";
         }
         String token = UUID.randomUUID().toString();
         user.setToken(token);
