@@ -3,7 +3,9 @@ package com.example.controller;
 
 import com.example.dao.*;
 import com.example.models.*;
+import com.example.services.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +51,9 @@ public class AdminController
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    SecurityService securityService;
 
     @GetMapping("/admin/dashboard")
     public String getdashboard(Model model){
@@ -161,7 +166,7 @@ public class AdminController
         model.addAttribute("insurance",insurance);
         model.addAttribute("Policies", policies);
 
-        return "employee/viewPolicies";
+        return "admin/viewPolicy";
 
     }
     @GetMapping("admin/sells")

@@ -7,35 +7,39 @@ pageEncoding="ISO-8859-1"%>
 <%@ include file="/template/header.jsp" %>
 
 <div class="container my-4 px-3">
-    <h2>Salary Transactions</h2>
+    <h2>Sells</h2>
 
     <div class="row justify-content-center">
         <div class="card mt-4 col-lg-11 p-4 shadow">
-        
+
         <div class="table-responsive mt-3 p-1">
             <table id="example" class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Transaction Id</th>
-                        <th>Transaction Date</th>
-                        <th>Transaction Time</th>
-                        <th>Month</th>
-                        <th>Year</th>
+                        <th>Agent Id</th>
+                        <th>Client Number</th>
+                        <th>Policy Term</th>
+                        <th>InsuranceId</th>
+                        <th>Buy Date</th>
                         <th>Amount</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${salaryPayments}" var="salaryPayment">
+                <c:forEach items="${Sells}" var="sell">
                     <tr>
-                        <td class="align-middle">${salaryPayment.transactionId}</td>
-                        <td class="align-middle">
-                            <fmt:formatDate pattern="dd-MM-yyyy" value="${salaryPayment.transactionDate}" />
-                        </td>
-                        <td class="align-middle">${salaryPayment.transactionTime}</td>
-                        <td class="align-middle">${salaryPayment.month}</td>
-                        <td class="align-middle">${salaryPayment.year}</td>
-                        <td class="align-middle">${salaryPayment.amount}</td>
+                         <td class="align-middle" onclick="location.href='agent/${sell.agentId}'">${sell.agentId}</td>
+
+                         <td class="align-middle">${sell.clientNo}</td>
+                         <td class="align-middle">${sell.policyTerm}</td>
+                         <td class="align-middle">${sell.insuranceId}</td>
+                         <td class="align-middle">
+                            <fmt:formatDate pattern="dd-MM-yyyy" value="${sell.buyDate}" />
+                         </td>
+                         <td class="align-middle">${sell.amount}</td>
+
                     </tr>
+
                 </c:forEach>
                 </tbody>
             </table>

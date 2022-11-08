@@ -4,14 +4,19 @@ import com.example.dao.*;
 import com.example.models.*;
 import com.example.services.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.example.models.Client;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.nio.file.Path;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -49,6 +54,19 @@ public class ClientController
         return "/client/dashboard";
     }
 
+    @GetMapping("/client/profile")
+
+    public String getProfile(Model model){
+        User user=securityService.findLoggedInUser();
+        if(user==null) return "redirect:/user/login";
+
+        Client client=clientRepository.getByUsername(user.getUsername());
+
+        model.addAttribute("user",user);
+        model.addAttribute("client",client);
+        return "/client/profile";
+    }
+
     @GetMapping("client/client")
     public String getClient(Model model)
     {
@@ -74,15 +92,13 @@ public class ClientController
 
 
 
-    @GetMapping("client/sells/{clientNo}")
-    private String getClient(@PathVariable("clientNo") int clientNo, Model model)
-    {
-        List<Sells> sells = sellsRepository.getsellbyclientNo(clientNo);
+    @GetMapping("client/sells")
+    private String getSells(Model model)
+    {   User user=securityService.findLoggedInUser();
+        if(user==null) return  "redirect:/user/login";
+        Client client=clientRepository.getByUsername(user.getUsername());
+        List<Sells> sells = sellsRepository.getsellbyclientNo(client.getClientNo());
         System.out.println(sells);
-        if(sells.size() == 0)
-        {
-            return "redirect:/client/client";
-        }
         model.addAttribute("Sells", sells);
 
         return "client/viewSells";
@@ -118,9 +134,9 @@ public class ClientController
     public String buyInsurance(@PathVariable("insuranceid") String insuranceId,Model model,String success,String failed ){
         User user=securityService.findLoggedInUser();
         Insurance insurance = insuranceRepository.getInsurancebyId(insuranceId);
+        if(insurance==null) return "redirect:/client/sells";
         List<Policies> policies=policiesRepository.getPoliciesByinsuranceId(insurance.getInsuranceId());
         List<Agent> agent=agentRepository.getAll();
-        System.out.println(user);
 
         if(success!=null) model.addAttribute("success","Your policy is approved");
         if(failed!=null) model.addAttribute("error","Your response is failed");
@@ -129,12 +145,34 @@ public class ClientController
         model.addAttribute("Policies",policies);
         model.addAttribute("user",user);
         model.addAttribute("Agents",agent);
-        model.addAttribute("submiturl","/client/insurance/"+insuranceId+"/buy?success");
+        model.addAttribute("submiturl","/client/insurance/"+insuranceId+"/buy");
 
         return "client/buy";
     }
+    @PostMapping("client/insurance/{insuranceid}/buy")
+    public String buyInsurance(@PathVariable("insuranceid") String insuranceid, @RequestParam("agentId") int agentId, @RequestParam("amount") int amount,
+                               @RequestParam("policyTerm") int policyTerm, Model model){
+        User user=securityService.findLoggedInUser();
+        Client client=clientRepository.getByUsername(user.getUsername());
 
-    @GetMapping("client/policies/{InsuranceId}")
+        if(sellsRepository.getsellbyId(agentId,client.getClientNo(),insuranceid,policyTerm)!=null){
+            return "redirect:/client/insurance/"+insuranceid+"/buy?failed";
+        }
+        long now = System.currentTimeMillis();
+        Date joinDate = new Date(now);
+        Sells sell=new Sells();
+        sell.setClientNo(client.getClientNo());
+        sell.setAgentId(agentId);
+        sell.setBuyDate(joinDate);
+        sell.setAmount(amount);
+        sell.setPolicyTerm(policyTerm);
+        sell.setInsuranceId(insuranceid);
+
+        sellsRepository.createSells(sell);
+        return "redirect:/client/sells";
+    }
+
+    @GetMapping("client/policies/{InsuranceId}/buy")
     public String getPolicy(@PathVariable("InsuranceId") String InsuranceId, Model model)
     {
 

@@ -25,7 +25,7 @@ public class EmailService {
 			hostname = "http://localhost:8080";
 
 		message.setText("Your account has been registered on SIT as " + user.getRole() + " with username : "
-				+ user.getUsername() + " and temporary password : " + user.getUsername()
+				+ user.getUsername()
 				+ "\n To reset your password, please click here : " + hostname + "/user/reset-password?token="
 				+ user.getToken());
 

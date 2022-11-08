@@ -55,7 +55,7 @@ pageEncoding="ISO-8859-1"%>
                       <a class="nav-link active" href="/welcome">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active" href="/client/client/${client.clientNo}"}">Profile</a>
+                      <a class="nav-link active" href="/client/profile"}">Profile</a>
                     </li>
                   </ul>
 

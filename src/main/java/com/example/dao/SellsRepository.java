@@ -15,7 +15,7 @@ public class SellsRepository {
     @Autowired
     private JdbcTemplate template;
 
-    public void SellsCreation(Sells sell)
+    public void createSells(Sells sell)
     {
         String query = "INSERT INTO Sells(agentId, clientNo, policyTerm, insuranceId, buyDate, amount) VALUES(?,?,?,?,?,?)";
         template.update(query, sell.getAgentId(),
@@ -88,12 +88,12 @@ public class SellsRepository {
         }
     }
 
-    public Sells getsellbyId(int agentId,int clientNo,String InsuranceId)
+    public Sells getsellbyId(int agentId,int clientNo,String InsuranceId,int policyTerm)
     {
-        String sql = "SELECT * FROM Sells WHERE agentId = ? AND clientNo = ? AND insuranceId = ?";
+        String sql = "SELECT * FROM Sells WHERE agentId = ? AND clientNo = ? AND insuranceId = ? AND policyTerm=?";
         try
         {
-            return template.queryForObject(sql,new BeanPropertyRowMapper<>(Sells.class),new Object[]{agentId, clientNo, InsuranceId});
+            return template.queryForObject(sql,new BeanPropertyRowMapper<>(Sells.class),new Object[]{agentId, clientNo, InsuranceId,policyTerm});
         }
         catch (EmptyResultDataAccessException e)
         {

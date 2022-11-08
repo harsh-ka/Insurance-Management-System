@@ -1,7 +1,7 @@
 package com.example.models;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.sql.Date;
 
 public class Policies
 {

@@ -102,7 +102,6 @@ pageEncoding="ISO-8859-1"%>
                                     <th>Employee Id </th>
                                     <th>Address</th>
                                     <th>View Profile</th>
-                                    <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,16 +115,11 @@ pageEncoding="ISO-8859-1"%>
                                     <td class="align-middle">${agent.houseNo} ${agent.landmark} ${agent.city}</td>
 
                                     <td class="align-middle">
-                                       <button class="btn btn-dark btn-block" onclick="location.href = '/admin/agents/${agent.agentId}'" >
+                                       <button class="btn btn-dark btn-block" onclick="location.href = '/agent/agents/${agent.agentId}'" >
                                           View Agents
                                        </button>
                                     </td>
 
-                                    <td class="align-middle">
-                                       <button class="btn btn-dark btn-block" onclick="location.href = '/admin/agents/${agent.agentId}/edit'" >
-                                          Edit
-                                       </button>
-                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>

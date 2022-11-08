@@ -35,7 +35,7 @@ pageEncoding="ISO-8859-1"%>
                         </td>
 
                         <td class="align-middle">
-                         <button class="btn btn-dark btn-block" onclick="location.href = '/admin/policies/${insurance.insuranceId}'" >
+                         <button class="btn btn-dark btn-block" onclick="location.href = '/admin/policies/${insurance.insuranceId}/edit'" >
                              Edit
                          </button>
                         </td>

@@ -28,7 +28,7 @@ public class InsuranceRepository {
             return null;
         }
     }
-    public void updateInsurancebyId(Insurance insurance){
+    public void updateInsurance(Insurance insurance){
 
         String sql="UPDATE Insurance SET InsuranceType=?,InsuranceName=? WHERE InsuranceId=?";
 

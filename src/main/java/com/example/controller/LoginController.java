@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.example.dao.ClientRepository;
 import com.example.dao.EmployeeRepository;
 import com.example.models.Client;
+import com.example.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ import com.example.dao.EmployeeRepository;
 import javax.validation.Valid;
 
 @Controller
-@Transactional
+
 public class LoginController {
 
     @Autowired
@@ -45,7 +46,10 @@ public class LoginController {
 
 
     @GetMapping("/user/login")
-    public String login(Model model, String error, String logout, String emailSent, String resetPassword) {
+    public String login(Model model, String error, String logout, String emailSent, String resetPassword,String account_created) {
+        securityService.autoLogout();
+        if(account_created!=null)
+            model.addAttribute("success","account created succesfully");
         if (error != null)
             model.addAttribute("error", "Invalid username or password");
 
@@ -84,17 +88,74 @@ public class LoginController {
             return "redirect:/user/login?error";
 
     }
+    @GetMapping("user/logout")
+    private  String logout(){
+        System.out.println("This is inside logout function");
+        return "redirect:/user/login";
+    }
     @GetMapping("/user/signup")
     public String addStudent(Model model) {
 
         User user=new User();
+        List<Employee> employees=employeeRepository.getAll();
+        user.setRole("Client");
+
         model.addAttribute("user", user);
         model.addAttribute("submiturl", "/user/signup/");
+        model.addAttribute("employees",employees);
         return "template/createUser";
     }
 
-    @PostMapping("/user/signup/")
-    public String UserRegister(@ModelAttribute("user") User user, Model model, BindingResult bindingResult){
+    @PostMapping("/user/signup")
+    private String addClient(@ModelAttribute("user") User user,@RequestParam("clientNo") int clientNo,
+                             @RequestParam("employeeId") String employeeId,
+                             @RequestParam("middleName") String middleName,
+                             @RequestParam("contact") String contact,
+                             Model model,BindingResult bindingResult){
+
+        if(userRepository.getUser(user.getUsername())!=null){
+            bindingResult.rejectValue("username", "Duplicate.username");
+        }
+        if(bindingResult.hasErrors()){
+            model.addAttribute("error","Please Enter Unique username!!!!!!!!!!!!!!!!");
+            model.addAttribute("submiturl","/user/signup/");
+            return "redirect:/user/signup";
+        }
+
+        String token=UUID.randomUUID().toString();
+        user.setRole("Client");
+        user.setToken(token);
+
+        Client client=new Client();
+        client.setClientNo(clientNo);
+        client.setFirstName(user.getFirstName());
+        client.setLastName(user.getLastName());
+        client.setMiddleName(middleName);
+        client.setUsername(user.getUsername());
+        client.setClientEmail(user.getEmailAddress());
+        client.setLandMark(user.getAddress());
+        client.setEmployeeId(employeeId);
+        client.setClientContact(contact);
+        client.setCity(user.getAddress());
+        client.setHouseNo(1);
+
+        int user_affected=userRepository.createUser(user);
+        int client_affected=clientRepository.createClient(client);
+
+        String val;
+        if(user_affected!=0 && client_affected!=0){
+            val="?account_created";
+        }
+        else{
+            val="?error";
+        }
+        emailService.sendInitialMail(user);
+        return "redirect:/template/login"+val;
+    }
+
+
+   /* @PostMapping("/user/signup/")
+    public String UserRegister(@ModelAttribute("user") User user,@RequestParam("password") String password, Model model, BindingResult bindingResult){
         if(userRepository.getUser(user.getUsername())!=null){
             bindingResult.rejectValue("username", "Duplicate.username");
         }
@@ -105,15 +166,16 @@ public class LoginController {
         }
         String token = UUID.randomUUID().toString();
         user.setToken(token);
-        user.setPasswordHash(user.getUsername());
+        user.setPasswordHash(password);
+
 
         userRepository.createUser(user);
 
-       //emailService.sendInitialMail(user);
+
 
         return "redirect:/template/login";
     }
-
+*/
     @GetMapping("/user/forgot-password")
     public String forgotPassword(Model model) {
         model.addAttribute("username", "");
@@ -136,7 +198,7 @@ public class LoginController {
         user.setToken(token);
         userRepository.updateToken(user);
 
-        emailService.sendForgotMail(user);
+        //emailService.sendForgotMail(user);
         return "redirect:/user/login?emailSent";
     }
 

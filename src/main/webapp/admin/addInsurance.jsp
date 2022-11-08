@@ -11,10 +11,10 @@
     <h2>
         <c:choose>
             <c:when test="${not empty edit}">
-                Edit Policies
+                Edit Client
             </c:when>
             <c:otherwise>
-                Add Policies
+                Add Client
             </c:otherwise>
         </c:choose>
     </h2>
@@ -38,48 +38,59 @@
     <div class="row justify-content-center">
         <div class="card mt-4 col-lg-10 py-4 shadow" style="padding-left: 5%; padding-right: 5%">
 
-            <form:form action="${submiturl}" method="post" modelAttribute="policies">
+            <form:form action="${submiturl}" method="post" modelAttribute="insurance">
             <div class="row mt-3">
                  <div class="col-lg-6">
                 <table class="table table-borderless mb-0">
+                    <tr>
+                        <th style="width: 40%">Policy Terms</th>
+                        <td style="width: 60%">
+                        <input type="number" name="policyTerm" class="form-control" required="true" placeholder="policyTerm"></input>
+                        </td>
+                    </tr>
 
                     <tr>
                         <th style="width: 40%">Insurance Id</th>
                         <td style="width: 60%">
-                            <form:input type="text" path="insuranceId" class="form-control" required="true" placeholder="Insurance Id" disabled="true"></form:input>
+                            <form:input type="text" path="insuranceId" class="form-control" required="true" placeholder="InsuranceId" ></form:input>
                             <form:errors path="insuranceId" style="color: red;"></form:errors>
                         </td>
                     </tr>
                     <tr>
-                        <th style="width: 40%">Policy Term</th>
+                        <th style="width: 40%">Insurance Type</th>
                         <td style="width: 60%">
-                        <form:input type="number" path="policyTerm" class="form-control" required="true" disabled="true" placeholder="Policy Term"></form:input>
-                        <form:errors path="policyTerm" style="color: red;"></form:errors>
+                            <form:input type="text" path="insuranceType" class="form-control" required="true" placeholder="InsuranceType" ></form:input>
+                            <form:errors path="insuranceType" style="color: red;"></form:errors>
                         </td>
                     </tr>
 
                     <tr>
-                        <th style="width: 40%">Total Amount</th>
+                        <th style="width: 40%">Insurance Name</th>
                         <td style="width: 60%">
-                            <form:input type="number" path="totalAmount" class="form-control" required="true" placeholder="Total Amount"></form:input>
-                            <form:errors path="totalAmount" style="color: red;"></form:errors>
+                            <form:input type="text" path="insuranceName" class="form-control" required="true" placeholder="InsuranceName" ></form:input>
+                            <form:errors path="insuranceName" style="color: red;"></form:errors>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th style="width: 40%">Amount</th>
+                        <td style="width: 60%">
+                        <input type="number" name="totalAmount" class="form-control" required="true"></input>
                         </td>
                     </tr>
                     <tr>
                         <th style="width: 40%">Start Date</th>
                         <td style="width: 60%">
-                            <form:input type="date" path="startDate" class="form-control" required="true" placeholder="Start Date"></form:input>
-                            <form:errors path="startDate" style="color: red;"></form:errors>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style="width: 40%">End Date</th>
-                        <td style="width: 60%">
-                            <form:input type="date" path="endDate" class="form-control" required="true" placeholder="End Date"></form:input>
-                            <form:errors path="endDate" style="color: red;"></form:errors>
+                        <input type="date" name="startDate" class="form-control" required="true"></input>
                         </td>
                     </tr>
 
+                    <tr>
+                        <th style="width: 40%">End Date</th>
+                        <td style="width: 60%">
+                        <input type="date" name="endDate" class="form-control" required="true"></input>
+                        </td>
+                    </tr>
 
                 </table>
             </div>

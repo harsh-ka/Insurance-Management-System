@@ -9,13 +9,9 @@ pageEncoding="ISO-8859-1"%>
 <div class="container my-4 px-3">
 
     <div class="d-flex align-items-center">
-        <h2 style="cursor : pointer;" onclick="location.href='/admin/insurance/'">Insurance</h2>
+        <h2 style="cursor : pointer;" onclick="location.href='/client/insurance/'">Insurance</h2>
     </div>
     <div class="row justify-content-center">
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button class="btn btn-primary me-md-2" type="button" onclick="location.href = '/admin/policies/${insurance.insuranceId}/add'">Add Policy</button>
-     </div>
         <div class="card mt-4 col-lg-10 py-4 shadow" style="padding-left: 5%; padding-right: 5%">
 
             <table class="table mt-3">
@@ -45,7 +41,6 @@ pageEncoding="ISO-8859-1"%>
                         <th>startDate</th>
                         <th>endDate</th>
                         <th>Total Amount</th>
-                        <th>Edit</th>
                     </tr>
                  </thead>
 
@@ -64,23 +59,11 @@ pageEncoding="ISO-8859-1"%>
                              <fmt:formatDate pattern="dd-MM-yyyy" value="${policy.endDate}" />
                           </td>
                           <td class="align-middle">${policy.totalAmount}</td>
-
-                          <td class="align-middle">
-                           <button class="btn btn-dark btn-block" onclick="location.href = '/admin/policies/${insurance.insuranceId}/${policy.policyTerm}/edit'" >
-                               Edit
-                           </button>
-                          </td>
-
                      </tr>
 
                  </c:forEach>
                  </tbody>
             </table>
-<%--
-            <div class="w-25 p-3 ">
-              <button class="btn btn-secondary" type="button" onclick="location.href='${insurance.insuranceId}/buy'">Buy Insurance</button>
-            </div>
---%>
         </div>
     </div>
 

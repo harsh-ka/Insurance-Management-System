@@ -12,6 +12,10 @@ pageEncoding="ISO-8859-1"%>
         <h3 class="ms-2">${employee.employeeId}</h3>
     </div>
     <div class="row justify-content-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <button class="btn btn-primary me-md-2" type="button" onclick="location.href = '/user/change-password'">Change Password</button>
+     </div>
         <div class="card mt-4 col-lg-10 py-4 shadow" style="padding-left: 5%; padding-right: 5%">
 
             <table class="table table-borderless mt-3">

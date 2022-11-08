@@ -50,12 +50,21 @@ public class PoliciesRepository {
             return null;
         }
     }
-
-    public void updatepoliciesbyInsuranceId(Policies policies)
+    public Policies getPoliciesByinsuranceIdandTerm(String insuranceId,int PolicyTerm)
+    {
+        String sql = "SELECT * FROM Policies WHERE insuranceId=? and policyTerm=?";
+        try {
+            return template.queryForObject(sql,new BeanPropertyRowMapper<Policies>(Policies.class),new Object[]{insuranceId,PolicyTerm});
+        }
+        catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+    public void updatepoliciesbyInsuranceIdandTerm(Policies policies)
     {
         String sql="UPDATE Policies TotalAmount = ?,EndDate = ? WHERE InsuranceId = ? AND PolicyTerm=?";
 
-        template.update(sql,policies.getTotalAmount(),policies.getEndDate(),policies.getInsuranceId(),policies.getPolicyTerm());
+        template.update(sql,policies.getTotalAmount(),policies.getEndDate(),policies.getEndDate(),policies.getInsuranceId(),policies.getPolicyTerm());
 
     }
     public void deletePolicy(Policies policies)
