@@ -8,11 +8,17 @@
 		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.harish.institute-management</groupId>
+<!--	<groupId>com.harish.institute-management</groupId>
 	<artifactId>InstituteManagementSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>InstituteManagementSystem</name>
 	<description>Demo project for Spring Boot</description>
+-->
+	<groupId>com.Insurance</groupId>
+	<artifactId>Insurance_Management_System</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Insurance_Management_System</name>
+	<description>Managing Insurance Policies</description>
 	<properties>
 		<java.version>14</java.version>
 	</properties>

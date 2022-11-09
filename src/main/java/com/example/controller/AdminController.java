@@ -286,7 +286,7 @@ public class AdminController
 
         int user_affect = userRepository.updateUser(curuser);
 
-        System.out.println("agent affected " + agent_affect + "user affected " + user_affect);
+      //  System.out.println("agent affected " + agent_affect + "user affected " + user_affect);
         String submit = "admin/agents/" + agentId + "/edit";
         if (agent_affect != 0 && user_affect != 0) {
             submit = submit + "?success";
@@ -343,7 +343,7 @@ public class AdminController
         int client_affect = clientRepository.updateClient(client);
         int user_affect = userRepository.updateUser(curuser);
 
-        System.out.println("agent affected " + clientId + "user affected " + user_affect);
+      //  System.out.println("agent affected " + clientId + "user affected " + user_affect);
         String submit = "admin/clients/" + clientId + "/edit";
         if (client_affect != 0 && user_affect != 0) {
             submit = submit + "?success";

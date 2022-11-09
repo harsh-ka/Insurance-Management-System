@@ -8,7 +8,7 @@ pageEncoding="ISO-8859-1"%>
 
 <div class="container my-4 px-3">
     <div class="d-flex align-items-center">
-        <h2 style="cursor : pointer;" onclick="location.href='/admin/employees'"> Employee </h2>
+        <h2 style="cursor : pointer;" onclick="location.href='/agent/employees'"> Employee </h2>
         <h3 class="ms-2">${employee.employeeId}</h3>
     </div>
     <div class="row justify-content-center">
@@ -81,7 +81,7 @@ pageEncoding="ISO-8859-1"%>
                                 <td class="align-middle">${client.clientEmail}</td>
                                 <td class="align-middle">${client.employeeId}</td>
                               <td class="align-middle">
-                              <button class="btn btn-dark btn-block" onclick="location.href = '/admin/clients/${client.clientNo}'" >
+                              <button class="btn btn-dark btn-block" onclick="location.href = '/agent/clients/${client.clientNo}'" >
                                  ViewProfile
                                </button>
                                </td>

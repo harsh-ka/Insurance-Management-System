@@ -24,7 +24,7 @@ public class EmailService {
 		if (hostname == null)
 			hostname = "http://localhost:8080";
 
-		message.setText("Your account has been registered on SIT as " + user.getRole() + " with username : "
+		message.setText("Your account has been registered on IMS as " + user.getRole() + " with username : "
 				+ user.getUsername()
 				+ "\n To reset your password, please click here : " + hostname + "/user/reset-password?token="
 				+ user.getToken());

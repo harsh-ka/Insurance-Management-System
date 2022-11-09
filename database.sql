@@ -1,3 +1,6 @@
+CREATE DATABASE insurance_management_main;
+use insurance_management_main;
+
 
 CREATE TABLE IF NOT EXISTS User
 (
@@ -123,3 +126,16 @@ CREATE TABLE IF NOT EXISTS Sells
     FOREIGN KEY(clientNo) REFERENCES Client(clientNo) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(insuranceId, policyTerm, clientNo, agentId)
 );
+
+
+INSERT INTO `insurance_management_main_1`.`insurance` (`insuranceId`, `insuranceType`, `insuranceName`) VALUES ('1', 'life-insurance', 'inusrance');
+INSERT INTO `insurance_management_main_1`.`insurance` (`insuranceId`, `insuranceType`, `insuranceName`) VALUES ('3', 'HealthInsurance', 'insurance');
+
+
+INSERT INTO `insurance_management_main_1`.`policies` (`policyTerm`, `totalAmount`, `startDate`, `endDate`, `insuranceId`) VALUES ('3', '12006', '2021-10-04', '2021-10-04', '1');
+INSERT INTO `insurance_management_main_1`.`policies` (`policyTerm`, `totalAmount`, `startDate`, `endDate`, `insuranceId`) VALUES ('5', '12006', '2021-10-04', '2021-10-04', '1');
+INSERT INTO `insurance_management_main_1`.`policies` (`policyTerm`, `totalAmount`, `startDate`, `endDate`, `insuranceId`) VALUES ('6', '89', '2022-11-22', '2022-11-19', '1');
+INSERT INTO `insurance_management_main_1`.`policies` (`policyTerm`, `totalAmount`, `startDate`, `endDate`, `insuranceId`) VALUES ('7', '700', '2022-11-18', '2022-11-18', '1');
+INSERT INTO `insurance_management_main_1`.`policies` (`policyTerm`, `totalAmount`, `startDate`, `endDate`, `insuranceId`) VALUES ('56', '50000', '2022-11-15', '2022-11-12', '3');
+INSERT INTO `insurance_management_main_1`.`policies` (`policyTerm`, `totalAmount`, `startDate`, `endDate`, `insuranceId`) VALUES ('67', '9000', '2022-11-21', '2022-11-26', '3');
+

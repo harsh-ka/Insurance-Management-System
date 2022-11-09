@@ -28,7 +28,7 @@ public class AdminRepository {
         String sql = "SELECT * FROM Admin WHERE username = ?";
         try
         {
-            return template.queryForObject(sql, new BeanPropertyRowMapper<>(Admin.class), new Object[]{username});
+            return template.queryForObject(sql, new BeanPropertyRowMapper<Admin>(Admin.class), new Object[]{username});
         }
         catch (EmptyResultDataAccessException e)
         {
@@ -41,7 +41,7 @@ public class AdminRepository {
         String query = "SELECT * FROM Admin WHERE admin_id=?";
         try
         {
-            return template.queryForObject(query,new BeanPropertyRowMapper<>(Agent.class),new Object[]{admin_id});
+            return template.queryForObject(query,new BeanPropertyRowMapper<Agent>(Agent.class),new Object[]{admin_id});
         }
         catch (EmptyResultDataAccessException e)
         {

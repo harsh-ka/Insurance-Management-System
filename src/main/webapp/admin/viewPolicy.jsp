@@ -9,7 +9,7 @@ pageEncoding="ISO-8859-1"%>
 <div class="container my-4 px-3">
 
     <div class="d-flex align-items-center">
-        <h2 style="cursor : pointer;" onclick="location.href='/admin/insurance/'">Insurance</h2>
+        <h2 style="cursor : pointer;" onclick="location.href='/admin/policies/'">Insurance</h2>
     </div>
     <div class="row justify-content-center">
 

@@ -1,10 +1,11 @@
 package com.example.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.dao.ClientRepository;
-import com.example.dao.EmployeeRepository;
+import com.example.dao.*;
+import com.example.models.Admin;
 import com.example.models.Client;
 import com.example.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 import com.example.models.User;
-import com.example.dao.UserRepository;
 import com.example.services.SecurityService;
 import com.example.services.EmailService;
 import com.example.dao.EmployeeRepository;
@@ -40,7 +40,8 @@ public class LoginController {
     
     @Autowired
     ClientRepository clientRepository;
-
+    @Autowired
+    AdminRepository adminRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -48,6 +49,36 @@ public class LoginController {
     @GetMapping("/user/login")
     public String login(Model model, String error, String logout, String emailSent, String resetPassword,String account_created) {
         securityService.autoLogout();
+
+        if(adminRepository.getByUsername("admin")==null){
+            Admin admin=new Admin();
+            User user=new User();
+
+            long now = System.currentTimeMillis();
+            Date joinDate = new Date(now);
+
+            String token= UUID.randomUUID().toString();
+            user.setUsername("admin");
+            user.setPasswordHash("admin");
+            user.setRole("Admin");
+            user.setEmailAddress("admin@gmai.com");
+            user.setFirstName("Harsh");
+            user.setLastName("Sharma");
+            user.setDateOfBirth(joinDate);
+            user.setGender("Male");
+            user.setAddress("N/A");
+            user.setToken(token);
+
+            admin.setAdmin_email(user.getEmailAddress());
+            admin.setAdmin_id(1);
+            admin.setAdmin_name("Harsh");
+            admin.setUsername("admin");
+            admin.setContactNo("1234567891");
+
+            userRepository.createUser(user);
+            adminRepository.createAdmin(admin);
+        }
+
         if(account_created!=null)
             model.addAttribute("success","account created succesfully");
         if (error != null)

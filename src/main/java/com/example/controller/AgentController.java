@@ -59,7 +59,7 @@ public class AgentController
             return "redirect:/agent/dashboard";
         }
 
-        model.addAttribute("User", user);
+        model.addAttribute("user", user);
 
         model.addAttribute("agent", agent);
 
@@ -169,5 +169,15 @@ public class AgentController
 
     }
 
+    @GetMapping("agent/sells")
+
+    public String getSells(Model model){
+        User user=securityService.findLoggedInUser();
+        if(user==null) return "redirect:/user/login";
+        Agent agent=agentRepository.getByUsername(user.getUsername());
+        List<Sells> sells=sellsRepository.getsellbyagentId(agent.getAgentId());
+        model.addAttribute("Sells",sells);
+        return "agent/sells";
+    }
 
 }
